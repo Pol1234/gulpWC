@@ -14,11 +14,16 @@ gulp.task('sass', function(){
 });
 
 gulp.task('serve', ['sass'], function(){
-    browserSync.init(['css/*.css', '*.html'], {
+    browserSync.init(['css/*.css', '../*.html'], {
         server:{
             baseDir: ''
         }
     })
 });
 
-gulp.task('default', ['serve']);
+gulp.task('watch', ['sass', 'serve'], function(){
+    gulp.watch(['scss/*.scss'], ['sass']);
+    //gulp.watch(['venedor/*.js'], ['js']);
+});
+
+gulp.task('default', ['watch']);
